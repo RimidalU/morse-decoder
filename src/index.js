@@ -44,10 +44,8 @@ function decode(expr) {
  let t = 0;
  let text = '';
  
-
     while (t < expr.length){
-
-        
+       
         let morseResult = ''
        let i = 0;
         while (i < 10){
@@ -73,23 +71,17 @@ function decode(expr) {
                 t = t + 2;
             }
             }
-           
-
-
-
+          
     for (let char in MORSE_TABLE){
         if (morseResult === char){
         text = text + MORSE_TABLE[char];
          console.log (text);
         }
-      
     } 
-    //   t = t + 10;  
     }
     return text;
 };
 
 module.exports = {
     decode 
-   
 }
