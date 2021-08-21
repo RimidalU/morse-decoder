@@ -35,95 +35,59 @@ const MORSE_TABLE = {
     '---..':  '8',
     '----.':  '9',
     '-----':  '0',
+    '??':  '??',
+    ' ':  ' ',
 };
 
 function decode(expr) {
  
- let t = expr.length - 1;
+ let t = 0;
  let text = '';
- let i = 0;
+ 
 
-    while (t >= 0){
+    while (t < expr.length){
 
         
         let morseResult = ''
-        i = 0;
+       let i = 0;
         while (i < 10){
-            if ((expr[i] ==='0') && (expr[i+1] === '0')){
+            if ((expr[t] ==='0') && (expr[t+1] === '0')){
                 morseResult = morseResult + '';
-                i = i + 2;             
-            } else if ((expr[i] === '1') && (expr[i+1] === '1')){
+                i = i + 2; 
+                t = t + 2;       
+            } else if ((expr[t] === '1') && (expr[t+1] === '1')){
                 morseResult = morseResult + "-";
                 i = i + 2;
-            } else if ((expr[i] === '*') && (expr[i+1] === '*')){
+                t = t + 2;
+            } else if ((expr[t] === '*') && (expr[t+1] === '*')){
                 morseResult = morseResult + ' ';
+                t = t + 10;
                 break;       
-            } else if ((expr[i] === '1') && (expr[i+1] === '0')){
+            } else if ((expr[t] === '1') && (expr[t+1] === '0')){
                 morseResult = morseResult + ".";
                 i = i + 2;
+                t = t + 2;
             } else{
                 morseResult = morseResult + "??";
+                i = i + 2;
+                t = t + 2;
             }
-            };
-         morseResult; 
+            }
+           
 
-         t = t - 10;
-         
+
+
     for (let char in MORSE_TABLE){
-        if (char === morseResult){
-        text = text + MORSE_TABLE[char] 
+        if (morseResult === char){
+        text = text + MORSE_TABLE[char];
+         console.log (text);
         }
+      
+    } 
+    //   t = t + 10;  
     }
-        
-    
-    }
-    
-return text;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-//      console.log(expr);
-// expr =  expr.split("").reverse().join("");
-// let i = 0;
-// let morseResult = '';
-// while (i < expr.length){
-//     if (i % 10 == 0) {
-//         morseResult = `${'+'}${morseResult}`; 
-//     }
-//     if (expr[i] == '0' && expr[i+1] == '1'){
-//         morseResult = `${'.'}${morseResult}`;
-//         i = i + 2;
-//     }else if (expr[i] == '1' && expr[i+1] == '1'){
-//         morseResult = `${'-'}${morseResult}`;
-//         i = i + 2;
-//     }else if (expr[i] == '0' && expr[i+1] == '0'){
-//         morseResult = `${"  "}${morseResult}`;
-//         i = i + 2;
-//     }else if (expr[i] == '*' && expr[i+1] == '*'){
-//         morseResult = `${"**"}${morseResult}`;
-//         i = i + 2;
-//     }else{
-//     morseResult = `${"??"}${morseResult}`;
-// }
-// }
-// expr = Array.from(morseResult.split("+").map(space => space.trim()));
- 
-// // expr = (expr.map(function(value, MORSE_TABLE) {return MORSE_TABLE[value]}));
-
-// console.log(expr);
-
-
-
+    return text;
+};
 
 module.exports = {
     decode 
