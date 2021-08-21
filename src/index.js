@@ -75,8 +75,7 @@ function decode(expr) {
     for (let char in MORSE_TABLE){
         if (morseResult === char){
         text = text + MORSE_TABLE[char];
-         console.log (text);
-        }
+     }
     } 
     }
     return text;
